@@ -38,7 +38,7 @@ iframe {
 
 <script src="data.js"></script>
 <script>
-const id = new URLSearchParams(location.search).get("id");
+const id = new URLSearchParams(location.search).get("ep111");
 const post = POSTS.find(p => p.id === id);
 document.getElementById("player").src = post.video;
 
