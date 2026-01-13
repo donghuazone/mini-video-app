@@ -2,65 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Watch Video</title>
-
-<!-- ✅ MONETAG TELEGRAM MINI APP SDK (ZONE BASED) -->
-<script src='//libtl.com/sdk.js'
-        data-zone='10456435'
-        data-sdk='show_10456435'></script>
-
-<style>
-body {
-  margin: 0;
-  background: black;
-  color: white;
-}
-#overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-button {
-  font-size: 22px;
-  padding: 15px 30px;
-}
-iframe {
-  width: 100%;
-  height: 100vh;
-  display: none;
-}
-</style>
+<title>Main Page</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="overlay">
-  <button onclick="showAd()">▶ Play</button>
-</div>
+<h2>🔥 Latest Posts</h2>
+<div id="posts"></div>
 
-<iframe id="video"
-src="https://geo.dailymotion.com/player/x110cm.html?video=k4cOuKILsE3T5DEEsua"
-frameborder="0"
-allowfullscreen></iframe>
-
+<script src="data.js"></script>
 <script>
-function showAd() {
-  if (typeof window.show_10456435 === "function") {
-    window.show_10456435().then(() => {
-      unlockVideo();
-    });
-  } else {
-    alert("Ad not ready yet");
-  }
-}
+const box = document.getElementById("posts");
 
-function unlockVideo() {
-  document.getElementById("overlay").style.display = "none";
-  document.getElementById("video").style.display = "block";
-}
+POSTS.forEach(p => {
+  box.innerHTML += `
+    <div class="card">
+      <img src="${p.thumb}">
+      <h3>${p.title}</h3>
+      <a href="post.html?id=${p.id}">View</a>
+    </div>
+  `;
+});
 </script>
 
 </body>
