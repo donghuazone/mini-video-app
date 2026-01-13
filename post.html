@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Watch</title>
+
+<!-- ✅ MONETAG ZONE SDK -->
+<script src='//libtl.com/sdk.js'
+        data-zone='10456435'
+        data-sdk='show_10456435'></script>
+
+<style>
+body { margin:0; background:black; color:white; }
+#overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+iframe {
+  width:100%;
+  height:100vh;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="overlay">
+  <button onclick="playAd()">▶ Play</button>
+</div>
+
+<iframe id="player" allowfullscreen></iframe>
+
+<script src="data.js"></script>
+<script>
+const id = new URLSearchParams(location.search).get("id");
+const post = POSTS.find(p => p.id === id);
+document.getElementById("player").src = post.video;
+
+function playAd() {
+  if (typeof window.show_10456435 === "function") {
+    window.show_10456435().then(() => {
+      unlock();
+    });
+  }
+}
+
+function unlock() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("player").style.display = "block";
+}
+</script>
+
+</body>
+</html>
