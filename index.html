@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <title>Watch Video</title>
 
-<!-- Monetag Mini App SDK -->
-<script src="https://telegram.monetag.com/sdk.js"></script>
+<!-- ✅ MONETAG TELEGRAM MINI APP SDK (ZONE BASED) -->
+<script src='//libtl.com/sdk.js'
+        data-zone='10456435'
+        data-sdk='show_10456435'></script>
 
 <style>
 body {
@@ -36,7 +38,7 @@ iframe {
 <body>
 
 <div id="overlay">
-  <button onclick="playAd()">▶ Play</button>
+  <button onclick="showAd()">▶ Play</button>
 </div>
 
 <iframe id="video"
@@ -45,19 +47,17 @@ frameborder="0"
 allowfullscreen></iframe>
 
 <script>
-function playAd() {
-  if (window.Monetag && Monetag.showRewardedAd) {
-    Monetag.showRewardedAd({
-      onReward: function() {
-        unlock();
-      }
+function showAd() {
+  if (typeof window.show_10456435 === "function") {
+    window.show_10456435().then(() => {
+      unlockVideo();
     });
   } else {
-    unlock();
+    alert("Ad not ready yet");
   }
 }
 
-function unlock() {
+function unlockVideo() {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("video").style.display = "block";
 }
